@@ -19,72 +19,68 @@ GAME RULES/LOGIC:
 
 // Defining the all required variables.
 
-var scores, roundScore, activePlayer, dice, zero;
+var scores, roundScore, activePlayer, dice, gamePlaying;
 
-scores = [0,0];
-roundScore = 0;
-activePlayer = 0;
-zero = 0;
+init();
 
-// Initially we dont want to show the dice.
-document.querySelector('.dice').style.display = 'none';
-
-// All the parameters needs to reset to zero.
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
 
 ////////////// Adding event listners - on click to the the roll button. ///////////////
  
 document.querySelector('.btn-roll').addEventListener('click', function() {
-// 1. we are getting a random number (1-6).
-dice = Math.floor(Math.random() * 6) + 1;
+
+	if(gamePlaying) {
+			// 1. we are getting a random number (1-6).
+
+		dice = Math.floor(Math.random() * 6) + 1;
 
 // 2. Display the proper dice number.
-var diceDOM =  document.querySelector('.dice');
-diceDOM.style.display = 'block';
-diceDOM.src="dice-" + dice + '.png';												 
+	
+		var diceDOM =  document.querySelector('.dice');
+		diceDOM.style.display = 'block';
+		diceDOM.src="dice-" + dice + '.png';
+	
 // 	3. Update the round score (but shud be reset if one comes).												
 if(dice > 1) {
+	
 	//Add score in the roundscore () of current player.
-roundScore += dice; 
-document.querySelector('#current-' + activePlayer).textContent = roundScore;
+	roundScore += dice; 
+		document.querySelector('#current-' + activePlayer).textContent = roundScore;
 
-console.log( 'Player  : ' + activePlayer + '  playing');
-	console.log('Round-Score :' + roundScore + '  Dice Score :'+ dice);
-}
-	else {
-		// Next Player.
-		nextPlayer();
+		console.log( 'Player  : ' + activePlayer + '  playing');
+			console.log('Round-Score :' + roundScore + '  Dice Score :'+ dice);
+		}
+			else {
+				// Next Player.
+				nextPlayer();
 		
+			}
 	}
- });
+});
 
 ///////////// Adding event listners - on click to the the hold button.////////////
 	
 	document.querySelector('.btn-hold').addEventListener('click', function() {
-	
-		// 1. Add the current score to the global score.
-		
-	scores[activePlayer] += roundScore;
-		
-		// 2. Update the UI
-		document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-		
-		// 3. Check if player won the game.
-		if(scores[activePlayer] >= 10){
-			document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+	 if (gamePlaying) {
+        // Add CURRENT score to GLOBAL score
+        scores[activePlayer] += roundScore;
+
+        // Update the UI
+        document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+
+        // Check if player won the game
+        if (scores[activePlayer] >= 100) {
+	document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+	document.querySelector('.dice').style.display = 'none';
+	document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+	document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
 			
-		}
-		else {
-			nextPlayer();
-		}
-		
-		
-		// 4. Next Player.
-		nextPlayer();
-	});
+			gamePlaying = false;
+        } else {
+            //Next player
+            nextPlayer();
+        }
+    }
+});
 
 function nextPlayer() {
 	//Moving to next player logic.
@@ -102,15 +98,37 @@ function nextPlayer() {
 //		document.querySelector('.player-1-panel').classList.add('active');
 		document.querySelector('.dice').style.display = 'none';
 }
-														 
+				
+///////////// Adding event listners - on cl ick to the the new-game button.////////////
+
+	document.querySelector('.btn-new').addEventListener('click', init);
 	
 	
+function init() {
+		scores = [0,0];
+		roundScore = 0;
+		activePlayer = 0;
+		zero = 0;
+		gamePlaying = true;
+
+		// Initially we dont want to show the dice.
+		document.querySelector('.dice').style.display = 'none';
+
+		// All the parameters needs to reset to zero.
+		document.getElementById('score-0').textContent = '0';
+		document.getElementById('score-1').textContent = '0';
+		document.getElementById('current-0').textContent = '0';
+		document.getElementById('current-1').textContent = '0';
+		document.getElementById('name-0').textContent = 'Player 1';
+		document.getElementById('name-1').textContent = 'Player 2';
+		document.querySelector('.player-0-panel').classList.remove('Winner');
+		document.querySelector('.player-1-panel').classList.remove('Winner');
+		document.querySelector('.player-0-panel').classList.remove('active');
+		document.querySelector('.player-1-panel').classList.remove('active');
+		document.querySelector('.player-0-panel').classList.add('active');
+	}
 	
-	
-	
-	
-	
-	
+
 	
 	
 	
