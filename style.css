@@ -18,7 +18,7 @@
 body {
     background-image: linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)), url(back.jpg);
     background-size: cover;
-    background-position: center;
+    background-position: left;
     font-family: Lato;
     font-weight: 300;
     position: relative;
@@ -150,5 +150,5 @@ i {
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
 }
 
-.winner { background-color: #f7f7f7; }
-.winner .player-name { font-weight: 300; color: #EB4D4D; }
+.winner { background-color: #ccff33; }
+.winner .player-name { font-weight: 3000; color: #EB4D4D; }
