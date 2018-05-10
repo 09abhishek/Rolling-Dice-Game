@@ -1,4 +1,4 @@
-<!-- Diwali Crackers Script-->
+<!-- Crackers Script-->
 
 <script type='text/javascript'>//<![CDATA[
 function write_fire(e){var t,n,r;stars[e+"r"]=createDiv("|",12);
