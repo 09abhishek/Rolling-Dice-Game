@@ -6,7 +6,7 @@ This project has been developed in JavaScript. (https://github.com/09abhishek/Ro
 
 Abhishek Gautam.
 
-Feel free to report any errors/bugs you might face during execution. Your advice or suggestions will be much appreciated and welcomed... Happy to Help!!
+Feel free to report any errors/bugs you might face during execution. Your advice or suggestions will be much appreciated. :)
 
 ## How to Use
 
