@@ -152,3 +152,7 @@ i {
 
 .winner { background-color: #ccff33; }
 .winner .player-name { font-weight: 3000; color: #EB4D4D; }
+
+.hide-btn {
+    display: none;
+}
